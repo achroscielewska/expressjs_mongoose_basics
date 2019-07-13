@@ -66,17 +66,17 @@ module.exports = app;
 
 ## mongoDB basics commands
 
-show dbs - show DBs
-use school - create new DB or if exist set as current
-db.createCollection("student")
-show collections 
-db.student.insert( { firstName: "Jan", lastName: "Kowalski", level: "one"} )
-db.student.update( { lastName: "Kowalski"},  { $set: { level: "two" } } ) 
-db.student.update( { lastName: "Kowalski"},  { $set: { hobby: "kites" } }, { $upsert: true } )
-db.student.remove( {  lastName: "Kowalski" } )
-db.student.remove( { _id: ObjectId("5cdd38fade3c61f751e6d10b" ) } )
-db.student.find().pretty()
-db.student.find( {  lastName: "Kowalski" }).pretty()
-db.student.find( { age: { $gt: 20 } } )
-db.student.find( { age: { $lt: 20 } } )
-db.student.find( { classes: {$in: ['history', 'math'] } } ).pretty()
+* show dbs - show DBs
+* use school - create new DB or if exist set as current
+* db.createCollection("student")
+* show collections 
+* db.student.insert( { firstName: "Jan", lastName: "Kowalski", level: "one"} )
+* db.student.update( { lastName: "Kowalski"},  { $set: { level: "two" } } ) 
+* db.student.update( { lastName: "Kowalski"},  { $set: { hobby: "kites" } }, { $upsert: true } )
+* db.student.remove( {  lastName: "Kowalski" } )
+* db.student.remove( { _id: ObjectId("5cdd38fade3c61f751e6d10b" ) } )
+* db.student.find().pretty()
+* db.student.find( {  lastName: "Kowalski" }).pretty()
+* db.student.find( { age: { $gt: 20 } } )
+* db.student.find( { age: { $lt: 20 } } )
+* db.student.find( { classes: {$in: ['history', 'math'] } } ).pretty()
