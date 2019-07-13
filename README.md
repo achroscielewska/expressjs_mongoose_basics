@@ -78,8 +78,10 @@ const bookSchema = mongoose.Schema({
 
 module.exports = mongoose.model('Book', bookSchema);
 ```
-3. in ./src/app/routes folder - add new file books.js
-4. using [router express](https://expressjs.com/en/guide/routing.html) and [mongoos queries](https://mongoosejs.com/docs/queries.html) add methods to add new book, get all books delete book
+## routes 
+
+1. in ./src/app/routes folder - add new file books.js
+2. using [router express](https://expressjs.com/en/guide/routing.html) and [mongoos queries](https://mongoosejs.com/docs/queries.html) add methods to add new book, get all books delete book
 
 ```javascript
 const express = require("express");
@@ -118,10 +120,31 @@ router.delete("/:id", (req, res, next) => {
 module.exports = router;
 ```
 
-5. check if api works to get all books http://localhost:3000/api/books to add / delete book you can use postman tool
+## api 
 
-## routes 
+1. in app.js file add routes
 
+```javascript
+const express = require('express');
+const bodyParser = require('body-parser');
+
+const environment = require('../environments/environment');
+const mongoose = require('mongoose');
+
+const URL_DB = environment.db_url;
+
+const booksRoutes = require('./routes/books');
+const URL_API_BOOKS = '/api/books';
+
+const app = express();
+
+...
+
+app.use(URL_API_BOOKS, booksRoutes);
+
+module.exports = app;
+```
+2. check if api works to get all books http://localhost:3000/api/books to add / delete book you can use postman tool
 
 ## mongoDB basics commands
 
