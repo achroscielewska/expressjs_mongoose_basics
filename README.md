@@ -81,7 +81,12 @@ module.exports = mongoose.model('Book', bookSchema);
 ## routes 
 
 1. in ./src/app/routes folder - add new file books.js
-2. using [router express](https://expressjs.com/en/guide/routing.html) and [mongoos queries](https://mongoosejs.com/docs/queries.html) add methods to add new book, get all books delete book
+2. using [router express](https://expressjs.com/en/guide/routing.html) and [mongoos queries](https://mongoosejs.com/docs/queries.html) add methods to:
+* add new book
+* get all books
+* get one book
+* update one book
+* delete book
 
 ```javascript
 const express = require("express");
@@ -103,10 +108,33 @@ router.post("/newBook", (req, res, next) => {
 // get all books
 router.get("", (req, res, next) => {
   Book.find().then(books => {
-    res.status(200).json({
-      message: "Books send",
-      books: books
-    });
+    res.status(200).json({ message: "Books send", books: books });
+  });
+});
+
+// update book
+router.put('/:id', (req, res, next) => {
+  const book = new Book({
+    _id: req.params.id,
+    title: req.body.title,
+    description: req.body.description,
+    bookshelfNo: req.body.bookshelfNo, 
+  })
+
+  Book.updateOne({_id: req.params.id }, book).then(result => {
+    console.log(result);
+    res.status(200).json({message: 'Book updated successful!!'});
+  })
+})
+
+// get one book
+router.get("/:id", (req, res, next) => {
+  Book.findById(req.params.id).then(book => {
+    if(book) {
+      res.status(200).json({message: 'Book found', book: book})
+    } else {
+      res.status(404).json({message: 'Book not found'})
+    }
   });
 });
 
@@ -118,6 +146,7 @@ router.delete("/:id", (req, res, next) => {
 });
 
 module.exports = router;
+
 ```
 
 ## api 
