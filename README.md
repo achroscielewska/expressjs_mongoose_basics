@@ -173,7 +173,10 @@ app.use(URL_API_BOOKS, booksRoutes);
 
 module.exports = app;
 ```
-2. check if api works to get all books http://localhost:3000/api/books to add / delete book you can use postman tool
+2. check if api works to:
+* get all books http://localhost:3000/api/books 
+* get one book http://localhost:3000/api/books/{_bookId} 
+* to add / delete / update book you can use postman tool
 
 ## mongoDB basics commands
 
